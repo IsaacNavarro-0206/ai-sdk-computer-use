@@ -3,6 +3,7 @@
 import { ChatPanel } from "@/src/features/chat/components/chat-panel";
 import { VncViewer } from "@/src/features/desktop/components/vnc-viewer";
 import { useDesktop } from "@/src/features/desktop/hooks/use-desktop";
+import { EventProvider } from "@/src/features/events/store/event-provider";
 import { DashboardLayout } from "@/src/features/layout/components/dashboard-layout";
 import { ToolDetailPanel } from "@/src/features/tool-detail/components/tool-detail-panel";
 import { useScrollToBottom } from "@/src/lib/use-scroll-to-bottom";
@@ -104,12 +105,14 @@ export default function Chat() {
   );
 
   return (
-    <DashboardLayout
-      chatPanel={chatPanel}
-      vncViewer={vncViewer}
-      toolDetailPanel={<ToolDetailPanel selectedEventId={selectedEventId} />}
-      mobileDesktopOpen={mobileDesktopOpen}
-      onMobileDesktopOpenChange={setMobileDesktopOpen}
-    />
+    <EventProvider messages={messages} chatStatus={status}>
+      <DashboardLayout
+        chatPanel={chatPanel}
+        vncViewer={vncViewer}
+        toolDetailPanel={<ToolDetailPanel selectedEventId={selectedEventId} />}
+        mobileDesktopOpen={mobileDesktopOpen}
+        onMobileDesktopOpenChange={setMobileDesktopOpen}
+      />
+    </EventProvider>
   );
 }
