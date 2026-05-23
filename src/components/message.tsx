@@ -6,7 +6,7 @@ import { memo } from "react";
 import equal from "fast-deep-equal";
 import { Streamdown } from "streamdown";
 
-import { ABORTED, cn } from "@/lib/utils";
+import { ABORTED, cn } from "@/src/lib/utils";
 import {
   Camera,
   CheckCircle,
