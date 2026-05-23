@@ -1,3 +1,4 @@
+import { ABORTED } from "@/src/lib/utils";
 import type {
   AgentEvent,
   AgentStatus,
@@ -55,6 +56,67 @@ export function formatEventTime(timestamp: number): string {
     minute: "2-digit",
     second: "2-digit",
   });
+}
+
+export function getEventTypeName(type: EventType): string {
+  return type.replace(/_/g, " ");
+}
+
+export function getEventTargetDetail(event: AgentEvent): string | null {
+  const args = event.payload.args;
+
+  if (Array.isArray(args.coordinate) && args.coordinate.length >= 2) {
+    const [x, y] = args.coordinate as [number, number];
+
+    return `(${x}, ${y})`;
+  }
+
+  if (typeof args.text === "string" && args.text.length > 0) {
+    return `"${args.text}"`;
+  }
+
+  if (typeof args.duration === "number") {
+    return `${args.duration}s`;
+  }
+
+  if (
+    typeof args.scroll_direction === "string" &&
+    typeof args.scroll_amount === "number"
+  ) {
+    return `${args.scroll_direction} × ${args.scroll_amount}`;
+  }
+
+  if (typeof args.command === "string") {
+    return args.command.length > 60
+      ? `${args.command.slice(0, 60)}…`
+      : args.command;
+  }
+
+  return null;
+}
+
+export function getEventResultMessage(event: AgentEvent): string | null {
+  const { result } = event.payload;
+
+  if (result === undefined) return null;
+
+  if (result === ABORTED) {
+    return ABORTED;
+  }
+
+  if (typeof result === "string") {
+    return result;
+  }
+
+  if (
+    isRecord(result) &&
+    result.type === "text" &&
+    typeof result.text === "string"
+  ) {
+    return result.text;
+  }
+
+  return null;
 }
 
 export function getEventLabel(event: AgentEvent): string {

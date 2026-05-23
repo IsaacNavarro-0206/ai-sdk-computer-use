@@ -23,6 +23,8 @@ export type ChatPanelProps = {
   append: (message: { role: "user"; content: string }) => void;
   scrollContainerRef: RefObject<HTMLDivElement | null>;
   scrollEndRef: RefObject<HTMLDivElement | null>;
+  selectedEventId: string | null;
+  onSelectEvent: (eventId: string) => void;
   className?: string;
 };
 
@@ -38,6 +40,8 @@ export function ChatPanel({
   append,
   scrollContainerRef,
   scrollEndRef,
+  selectedEventId,
+  onSelectEvent,
   className,
 }: ChatPanelProps) {
   return (
@@ -59,6 +63,8 @@ export function ChatPanel({
             isLoading={isLoading}
             status={status}
             isLatestMessage={i === messages.length - 1}
+            selectedEventId={selectedEventId}
+            onSelectEvent={onSelectEvent}
           />
         ))}
 
