@@ -1,22 +1,22 @@
 "use client";
 
-import { PreviewMessage } from "@/components/message";
-import { getDesktopURL } from "@/lib/sandbox/utils";
-import { useScrollToBottom } from "@/lib/use-scroll-to-bottom";
+import { PreviewMessage } from "@/src/components/message";
+import { getDesktopURL } from "@/src/lib/sandbox/utils";
+import { useScrollToBottom } from "@/src/lib/use-scroll-to-bottom";
 import { useChat } from "@ai-sdk/react";
 import { useEffect, useState } from "react";
-import { Input } from "@/components/input";
-import { Button } from "@/components/ui/button";
+import { Input } from "@/src/components/input";
+import { Button } from "@/src/components/ui/button";
 import { toast } from "sonner";
-import { DeployButton, ProjectInfo } from "@/components/project-info";
-import { AISDKLogo } from "@/components/icons";
-import { PromptSuggestions } from "@/components/prompt-suggestions";
+import { DeployButton, ProjectInfo } from "@/src/components/project-info";
+import { AISDKLogo } from "@/src/components/icons";
+import { PromptSuggestions } from "@/src/components/prompt-suggestions";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/resizable";
-import { ABORTED } from "@/lib/utils";
+} from "@/src/components/ui/resizable";
+import { ABORTED } from "@/src/lib/utils";
 
 export default function Chat() {
   // Create separate refs for mobile and desktop to ensure both scroll properly
