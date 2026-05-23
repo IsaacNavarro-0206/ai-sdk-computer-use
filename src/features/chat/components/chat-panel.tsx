@@ -7,6 +7,7 @@ import { PromptSuggestions } from "@/src/components/prompt-suggestions";
 import { DeployButton, ProjectInfo } from "@/src/components/project-info";
 import type { Message } from "ai";
 import type { RefObject } from "react";
+import { DebugPanel } from "@/src/features/events/components/debug-panel";
 
 type ChatStatus = "error" | "submitted" | "streaming" | "ready";
 
@@ -41,16 +42,16 @@ export function ChatPanel({
 }: ChatPanelProps) {
   return (
     <div className={`flex min-h-0 flex-col ${className ?? ""}`}>
-      <div className="flex items-center justify-between bg-white px-4 py-4">
+      {/* <div className="flex items-center justify-between bg-white px-4 py-4">
         <AISDKLogo />
         <DeployButton />
-      </div>
+      </div> */}
 
       <div
         className="flex-1 space-y-6 overflow-y-auto px-4 py-4"
         ref={scrollContainerRef}
       >
-        {messages.length === 0 ? <ProjectInfo /> : null}
+        {/* {messages.length === 0 ? <ProjectInfo /> : null} */}
         {messages.map((message, i) => (
           <PreviewMessage
             message={message}
@@ -64,14 +65,14 @@ export function ChatPanel({
         <div ref={scrollEndRef} className="pb-2" />
       </div>
 
-      {messages.length === 0 && (
+      {/* {messages.length === 0 && (
         <PromptSuggestions
           disabled={isInitializing}
           submitPrompt={(prompt: string) =>
             append({ role: "user", content: prompt })
           }
         />
-      )}
+      )} */}
 
       <div className="bg-white">
         <form onSubmit={handleSubmit} className="p-4">
@@ -85,6 +86,8 @@ export function ChatPanel({
           />
         </form>
       </div>
+
+      <DebugPanel />
     </div>
   );
 }
