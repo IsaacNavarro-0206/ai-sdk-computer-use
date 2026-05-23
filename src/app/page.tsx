@@ -87,27 +87,27 @@ export default function Chat() {
     [streamUrl, isInitializing, refreshDesktop],
   );
 
-  const chatPanel = (
-    <ChatPanel
-      messages={messages}
-      input={input}
-      handleInputChange={handleInputChange}
-      handleSubmit={handleSubmit}
-      status={status}
-      isLoading={isLoading}
-      isInitializing={isInitializing}
-      stop={stop}
-      append={append}
-      scrollContainerRef={scrollContainerRef}
-      scrollEndRef={scrollEndRef}
-      className="h-full"
-    />
-  );
-
   return (
     <EventProvider messages={messages} chatStatus={status}>
       <DashboardLayout
-        chatPanel={chatPanel}
+        chatPanel={
+          <ChatPanel
+            messages={messages}
+            input={input}
+            handleInputChange={handleInputChange}
+            handleSubmit={handleSubmit}
+            status={status}
+            isLoading={isLoading}
+            isInitializing={isInitializing}
+            stop={stop}
+            append={append}
+            scrollContainerRef={scrollContainerRef}
+            scrollEndRef={scrollEndRef}
+            selectedEventId={selectedEventId}
+            onSelectEvent={setSelectedEventId}
+            className="h-full"
+          />
+        }
         vncViewer={vncViewer}
         toolDetailPanel={<ToolDetailPanel selectedEventId={selectedEventId} />}
         mobileDesktopOpen={mobileDesktopOpen}
