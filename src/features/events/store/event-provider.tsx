@@ -33,14 +33,16 @@ type EventProviderProps = {
   children: ReactNode;
   messages: Message[];
   chatStatus: ChatStatus;
+  initialEvents: AgentEvent[];
 };
 
 export function EventProvider({
   children,
   messages,
   chatStatus,
+  initialEvents,
 }: EventProviderProps) {
-  const [events, setEvents] = useState<AgentEvent[]>([]);
+  const [events, setEvents] = useState<AgentEvent[]>(initialEvents);
 
   useEffect(() => {
     setEvents((prev) => syncEventsFromMessages(prev, messages));

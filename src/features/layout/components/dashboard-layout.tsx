@@ -10,6 +10,7 @@ import { Monitor } from "lucide-react";
 import type { ReactNode } from "react";
 
 export type DashboardLayoutProps = {
+  sessionSidebar?: ReactNode;
   chatPanel: ReactNode;
   vncViewer: ReactNode;
   toolDetailPanel: ReactNode;
@@ -18,6 +19,7 @@ export type DashboardLayoutProps = {
 };
 
 export function DashboardLayout({
+  sessionSidebar,
   chatPanel,
   vncViewer,
   toolDetailPanel,
@@ -34,7 +36,11 @@ export function DashboardLayout({
             minSize={28}
             className="flex min-h-0 flex-col border-r border-zinc-200"
           >
-            {chatPanel}
+            <div className="flex h-full min-h-0">
+              {sessionSidebar}
+
+              <div className="min-h-0 min-w-0 flex-1">{chatPanel}</div>
+            </div>
           </ResizablePanel>
 
           <ResizableHandle withHandle />
@@ -54,7 +60,13 @@ export function DashboardLayout({
 
       {/* Mobile: chat full width + desktop overlay */}
       <div className="flex h-full w-full min-h-0 flex-col lg:hidden">
-        {chatPanel}
+        {sessionSidebar ? (
+          <div className="flex max-h-36 shrink-0 border-b border-zinc-200">
+            {sessionSidebar}
+          </div>
+        ) : null}
+
+        <div className="min-h-0 flex-1">{chatPanel}</div>
 
         <Button
           type="button"
