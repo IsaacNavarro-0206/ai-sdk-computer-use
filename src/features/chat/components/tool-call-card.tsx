@@ -80,10 +80,12 @@ export function ToolCallCard({
   const isSelected = selectedEventId === toolCallId;
   const Icon = EVENT_ICONS[event.type];
   const targetDetail = getEventTargetDetail(event);
-  const showThumbnail =
+  const screenshotThumbnail =
     event.type === "screenshot" &&
     event.status === "complete" &&
-    isScreenshotResult(event.payload.result);
+    isScreenshotResult(event.payload.result)
+      ? event.payload.result.data
+      : null;
 
   return (
     <motion.button
@@ -145,10 +147,10 @@ export function ToolCallCard({
         <div className="h-16 w-28 animate-pulse rounded border border-zinc-200 bg-zinc-200 dark:bg-zinc-700" />
       ) : null}
 
-      {showThumbnail ? (
+      {screenshotThumbnail ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={`data:image/png;base64,${event.payload.result.data}`}
+          src={`data:image/png;base64,${screenshotThumbnail}`}
           alt="Screenshot thumbnail"
           className="h-16 w-auto max-w-full rounded border border-zinc-200 object-cover"
         />
