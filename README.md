@@ -2,7 +2,7 @@ Author: Isaac David Navarro Hernández
 
 # AI Agent Dashboard
 
-Take-home submission for the **Senior Frontend Engineer — AI Agent Dashboard** challenge ([requirements](docs/challenge.md)). Built on [vercel-labs/ai-sdk-computer-use](https://github.com/vercel-labs/ai-sdk-computer-use) with **Next.js**, **React**, **Anthropic Claude** (computer use), and **Vercel Sandbox**.
+Take-home submission for the **Senior Frontend Engineer — AI Agent Dashboard** challenge. Built on [vercel-labs/ai-sdk-computer-use](https://github.com/vercel-labs/ai-sdk-computer-use) with **Next.js**, **React**, **Anthropic Claude** (computer use), and **Vercel Sandbox**.
 
 | | |
 |---|---|
