@@ -79,7 +79,6 @@ export function ChatWorkspace({ session }: ChatWorkspaceProps) {
     handleSubmit,
     status,
     stop: stopGeneration,
-    append,
     setMessages,
   } = useChat({
     api: "/api/chat",
@@ -162,7 +161,6 @@ export function ChatWorkspace({ session }: ChatWorkspaceProps) {
             isLoading={isLoading}
             isInitializing={isInitializing}
             stop={stop}
-            append={append}
             scrollContainerRef={scrollContainerRef}
             scrollEndRef={scrollEndRef}
             selectedEventId={selectedEventId}

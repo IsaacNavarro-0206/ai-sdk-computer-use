@@ -1,10 +1,7 @@
 "use client";
 
 import { Input } from "@/src/components/input";
-import { AISDKLogo } from "@/src/components/icons";
 import { PreviewMessage } from "@/src/components/message";
-import { PromptSuggestions } from "@/src/components/prompt-suggestions";
-import { DeployButton, ProjectInfo } from "@/src/components/project-info";
 import type { Message } from "ai";
 import type { RefObject } from "react";
 import { DebugPanel } from "@/src/features/events/components/debug-panel";
@@ -20,7 +17,6 @@ export type ChatPanelProps = {
   isLoading: boolean;
   isInitializing: boolean;
   stop: () => void;
-  append: (message: { role: "user"; content: string }) => void;
   scrollContainerRef: RefObject<HTMLDivElement | null>;
   scrollEndRef: RefObject<HTMLDivElement | null>;
   selectedEventId: string | null;
@@ -37,7 +33,6 @@ export function ChatPanel({
   isLoading,
   isInitializing,
   stop,
-  append,
   scrollContainerRef,
   scrollEndRef,
   selectedEventId,
