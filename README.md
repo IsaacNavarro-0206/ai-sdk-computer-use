@@ -7,7 +7,7 @@ Take-home submission for the **Senior Frontend Engineer — AI Agent Dashboard**
 | | |
 |---|---|
 | **Live demo** | https://operator-chat-cambio-ml.vercel.app/ |
-| **Demo video** | _[Add your video URL — ~5 min with sound]_ |
+| **Demo video** | https://drive.google.com/file/d/1fedoyLO_TLTqsi0X4khK5khSQXkyghKY/view?usp=sharing |
 
 ---
 
