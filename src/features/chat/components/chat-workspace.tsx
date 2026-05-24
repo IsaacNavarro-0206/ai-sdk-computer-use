@@ -127,7 +127,7 @@ export function ChatWorkspace({ session }: ChatWorkspaceProps) {
     }
   };
 
-  const isLoading = status !== "ready";
+  const isLoading = status !== "ready" && status !== "error";
 
   const vncViewer = useMemo(
     () => (
