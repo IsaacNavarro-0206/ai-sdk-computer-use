@@ -7,6 +7,22 @@ import { prunedMessages } from "@/src/lib/utils";
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 300;
 
+function getStreamErrorMessage(error: unknown): string {
+  if (typeof error === "string") {
+    return error;
+  }
+
+  if (error instanceof Error) {
+    if (error.message.includes("rate limit")) {
+      return "Rate limit exceeded. Please wait a minute and try again.";
+    }
+
+    return error.message;
+  }
+
+  return "An unexpected error occurred.";
+}
+
 export async function POST(req: Request) {
   const { messages, sandboxId }: { messages: UIMessage[]; sandboxId: string } =
     await req.json();
@@ -28,10 +44,9 @@ export async function POST(req: Request) {
 
     // Create response stream
     const response = result.toDataStreamResponse({
-      // @ts-expect-error eheljfe
       getErrorMessage(error) {
         console.error(error);
-        return error;
+        return getStreamErrorMessage(error);
       },
     });
 
